@@ -25,7 +25,7 @@ const Navbar = () => {
     },
   };
   return (
-    <div className="w-full fixed left-0 top-0 bg-black bg-opacity-90 backdrop-blur-md z-50">
+    <div className="w-full fixed left-0 top-0 bg-black bg-opacity-90 backdrop-blur-md z-50 border-b-2 border-gray-800 shadow-md shadow-gray-900">
       <nav className="max-w-[1444px] mx-auto h-24 py-4 lg:px-10 px-4 flex justify-between items-center">
         <img src={logo} alt="logo" className="w-24 bg-contain z-50" />
         <ul className="lg:flex hidden items-center justify-center gap-8 cursor-pointer text-red-500 font-bold">
