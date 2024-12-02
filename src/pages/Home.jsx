@@ -28,6 +28,13 @@ import netflix9 from "../assets/onlyInNetflix/netflix9.webp";
 import netflix10 from "../assets/onlyInNetflix/netflix10.webp";
 import OnlyInNetflix from "../components/OnlyInNetflix";
 
+import { FaComputer } from "react-icons/fa6";
+import { FaRegArrowAltCircleDown } from "react-icons/fa";
+import { IoTelescope } from "react-icons/io5";
+import { FaSmileBeam } from "react-icons/fa";
+
+import Reason from "../components/Reason";
+
 const trends = [
   {
     id: 1,
@@ -114,6 +121,37 @@ const netflixs = [
   },
 ];
 
+const reasons = [
+  {
+    id: 1,
+    title: "Enjoy on your TV",
+    description:
+      "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.",
+    icon: <FaComputer />,
+  },
+  {
+    id: 2,
+    title: "Download your shows to watch offline",
+    description:
+      "Save your favorites easily and always have something to watch.",
+    icon: <FaRegArrowAltCircleDown />,
+  },
+  {
+    id: 3,
+    title: "Watch everywhere",
+    description:
+      "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.",
+    icon: <IoTelescope />,
+  },
+  {
+    id: 4,
+    title: "Create profiles for kids",
+    description:
+      "Send kids on adventures with their favorite characters in a space made just for them — free with your membership.",
+    icon: <FaSmileBeam />,
+  },
+];
+
 const Home = () => {
   return (
     <div className="mt-24 max-w-[1444px] mx-auto py-4 lg:px-10 px-4">
@@ -122,7 +160,7 @@ const Home = () => {
         loop
         className="rounded-xl"
         navigation={({ setActiveIndex, activeIndex, length }) => (
-          <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+          <div className="absolute z-50 flex gap-2 bottom-4 left-2/4 -translate-x-2/4">
             {new Array(length).fill("").map((_, i) => (
               <span
                 key={i}
@@ -154,6 +192,7 @@ const Home = () => {
 
       <Trending trends={trends} />
       <OnlyInNetflix netflixs={netflixs} />
+      <Reason reasons={reasons} />
     </div>
   );
 };
