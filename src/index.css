@@ -5,6 +5,6 @@
 @tailwind utilities;
 
 body {
-  background-color: white;
+  background-color: black;
   font-family: "Kanit", sans-serif;
 }
