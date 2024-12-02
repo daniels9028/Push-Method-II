@@ -16,6 +16,18 @@ import trend8 from "../assets/trending/trend8.webp";
 import trend9 from "../assets/trending/trend9.webp";
 import trend10 from "../assets/trending/trend10.webp";
 
+import netflix1 from "../assets/onlyInNetflix/netflix1.webp";
+import netflix2 from "../assets/onlyInNetflix/netflix2.webp";
+import netflix3 from "../assets/onlyInNetflix/netflix3.webp";
+import netflix4 from "../assets/onlyInNetflix/netflix4.webp";
+import netflix5 from "../assets/onlyInNetflix/netflix5.webp";
+import netflix6 from "../assets/onlyInNetflix/netflix6.webp";
+import netflix7 from "../assets/onlyInNetflix/netflix7.webp";
+import netflix8 from "../assets/onlyInNetflix/netflix8.webp";
+import netflix9 from "../assets/onlyInNetflix/netflix9.webp";
+import netflix10 from "../assets/onlyInNetflix/netflix10.webp";
+import OnlyInNetflix from "../components/OnlyInNetflix";
+
 const trends = [
   {
     id: 1,
@@ -59,6 +71,49 @@ const trends = [
   },
 ];
 
+const netflixs = [
+  {
+    id: 1,
+    image: netflix1,
+  },
+  {
+    id: 2,
+    image: netflix2,
+  },
+  {
+    id: 3,
+    image: netflix3,
+  },
+  {
+    id: 4,
+    image: netflix4,
+  },
+  {
+    id: 5,
+    image: netflix5,
+  },
+  {
+    id: 6,
+    image: netflix6,
+  },
+  {
+    id: 7,
+    image: netflix7,
+  },
+  {
+    id: 8,
+    image: netflix8,
+  },
+  {
+    id: 9,
+    image: netflix9,
+  },
+  {
+    id: 10,
+    image: netflix10,
+  },
+];
+
 const Home = () => {
   return (
     <div className="mt-24 max-w-[1444px] mx-auto py-4 lg:px-10 px-4">
@@ -98,6 +153,7 @@ const Home = () => {
       </Carousel>
 
       <Trending trends={trends} />
+      <OnlyInNetflix netflixs={netflixs} />
     </div>
   );
 };
