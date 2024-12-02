@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -28,8 +29,12 @@ const Navbar = () => {
       <nav className="max-w-[1444px] mx-auto h-24  py-4 lg:px-10 px-4 flex justify-between items-center z-50">
         <img src={logo} alt="logo" className="w-24 bg-contain z-50" />
         <ul className="lg:flex hidden items-center justify-center gap-8 cursor-pointer text-red-500 font-bold">
-          <li className="hover:text-red-600 transition-colors">Home</li>
-          <li className="hover:text-red-600 transition-colors">Movies</li>
+          <Link to="/" className="hover:text-red-600 transition-colors">
+            Home
+          </Link>
+          <Link to="/movies" className="hover:text-red-600 transition-colors">
+            Movies
+          </Link>
           <li className="hover:text-red-600 transition-colors">Categories</li>
           <li className="hover:text-red-600 transition-colors">Pricing</li>
           <li className="hover:text-red-600 transition-colors">About</li>
