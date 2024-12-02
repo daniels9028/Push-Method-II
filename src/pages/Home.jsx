@@ -3,6 +3,61 @@ import { Carousel } from "@material-tailwind/react";
 import banner1 from "../assets/banner1.jpg";
 import banner2 from "../assets/banner2.jpg";
 import banner3 from "../assets/banner3.jpg";
+import Trending from "../components/Trending";
+
+import trend1 from "../assets/trending/trend1.webp";
+import trend2 from "../assets/trending/trend2.webp";
+import trend3 from "../assets/trending/trend3.webp";
+import trend4 from "../assets/trending/trend4.webp";
+import trend5 from "../assets/trending/trend5.webp";
+import trend6 from "../assets/trending/trend6.webp";
+import trend7 from "../assets/trending/trend7.webp";
+import trend8 from "../assets/trending/trend8.webp";
+import trend9 from "../assets/trending/trend9.webp";
+import trend10 from "../assets/trending/trend10.webp";
+
+const trends = [
+  {
+    id: 1,
+    image: trend1,
+  },
+  {
+    id: 2,
+    image: trend2,
+  },
+  {
+    id: 3,
+    image: trend3,
+  },
+  {
+    id: 4,
+    image: trend4,
+  },
+  {
+    id: 5,
+    image: trend5,
+  },
+  {
+    id: 6,
+    image: trend6,
+  },
+  {
+    id: 7,
+    image: trend7,
+  },
+  {
+    id: 8,
+    image: trend8,
+  },
+  {
+    id: 9,
+    image: trend9,
+  },
+  {
+    id: 10,
+    image: trend10,
+  },
+];
 
 const Home = () => {
   return (
@@ -41,6 +96,8 @@ const Home = () => {
           className="w-full h-[500px] object-cover"
         />
       </Carousel>
+
+      <Trending trends={trends} />
     </div>
   );
 };
