@@ -10,7 +10,7 @@ const Trending = (props) => {
         Trending Now
       </h3>
       <div className="flex w-full justify-center items-center">
-        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-8 place-items-center">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mt-8 place-items-center">
           {trends.map((trend) => (
             <Card id={trend.id} image={trend.image} key={trend.id} />
           ))}
