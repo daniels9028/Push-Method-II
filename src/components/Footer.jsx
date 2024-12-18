@@ -11,7 +11,7 @@ import logo_netflix from "../assets/logo_netflix.png";
 const Footer = () => {
   return (
     <footer className="w-full bg-black border-t-2 border-gray-800 shadow-md shadow-gray-900">
-      <div className="max-w-[1444px] mx-auto py-4 lg:px-10 px-4 text-gray-300 flex flex-row justify-between space-x-12">
+      <div className="max-w-[1444px] mx-auto py-8 lg:px-10 px-4 text-gray-300 flex lg:flex-row flex-col justify-between gap-12">
         <div className="flex flex-col justify-center gap-3 lg:w-1/4">
           <div className="flex items-center gap-2">
             <img
@@ -31,7 +31,7 @@ const Footer = () => {
             Ada pertanyaan? Hubungi 007-803-321-2148
           </p>
         </div>
-        <div className="flex flex-row justify-center space-x-12 lg:w-2/4">
+        <div className="flex lg:flex-row text-center flex-col justify-center gap-12 lg:w-2/4">
           <div className="space-y-2">
             <h3>NETFLIX</h3>
             <ul className="space-y-1 cursor-pointer">
@@ -71,7 +71,7 @@ const Footer = () => {
           </div>
           <div className="space-y-2">
             <h3>ACCOUNT</h3>
-            <ul className="space-y-1">
+            <ul className="space-y-1 cursor-pointer">
               <li className="hover:underline hover:text-gray-500 transition-all">
                 Akun
               </li>
@@ -87,7 +87,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="flex flex-col gap-3 lg:w-1/4">
+        <div className="flex flex-col items-center gap-3 lg:w-1/4">
           <h3>FOLLOW</h3>
           <div className="flex space-x-4 cursor-pointer">
             <FaTwitter color="white" size={18} />
