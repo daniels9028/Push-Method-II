@@ -1,4 +1,3 @@
-import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import Errors from "./pages/Errors";

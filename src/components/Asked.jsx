@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import CardQuestion from "./CardQuestion";
 
 const Asked = (props) => {
