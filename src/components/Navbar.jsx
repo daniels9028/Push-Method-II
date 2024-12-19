@@ -39,9 +39,11 @@ const Navbar = () => {
           <li className="hover:text-red-600 transition-colors">Pricing</li>
           <li className="hover:text-red-600 transition-colors">About</li>
         </ul>
-        <button className="bg-red-500 py-2 px-4 rounded-xl text-white hover:text-gray-400 hover:bg-red-600 lg:flex hidden transition-colors">
-          Login
-        </button>
+        <Link to="/login">
+          <button className="bg-red-500 py-2 px-4 rounded-xl text-white hover:text-gray-400 hover:bg-red-600 lg:flex hidden transition-colors">
+            Login
+          </button>
+        </Link>
         <div className="lg:hidden flex cursor-pointer z-50">
           {nav ? (
             <IoClose color="red" size={30} onClick={() => setNav(!nav)} />
@@ -68,9 +70,11 @@ const Navbar = () => {
           <li className="hover:text-red-600 transition-colors">Pricing</li>
           <li className="hover:text-red-600 transition-colors">About</li>
         </ul>
-        <button className="bg-red-500 py-2 px-4 rounded-xl text-white hover:text-gray-400 hover:bg-red-600 lg:hidden flex transition-colors">
-          Login
-        </button>
+        <Link to="/login">
+          <button className="bg-red-500 py-2 px-4 rounded-xl text-white hover:text-gray-400 hover:bg-red-600 lg:hidden flex transition-colors">
+            Login
+          </button>
+        </Link>
       </motion.div>
     </div>
   );
