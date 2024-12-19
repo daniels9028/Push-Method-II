@@ -1,12 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import bg_login from "../assets/bg_login50.png";
+import axios from "axios";
 
 const Login = () => {
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
+
+  const handleAuthentication = async () => {
+    try {
+      const options = {
+        method: "POST",
+        url: "https://api.themoviedb.org/3/authentication/token/validate_with_login",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYzZlZmQxNGM4MTUzOGIzYWVhZmI4NGQ2M2Q0NWQzZCIsIm5iZiI6MTczMjc2MjAxOC40Njg5OTk5LCJzdWIiOiI2NzQ3ZDlhMjJhYTViN2JkMTRlNTMxNzEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.lrg4NJROqpgL7deJNXfWwUSmb0DwVtRzwoFFiG4idXI",
+        },
+        data: {
+          username: "daniels9028",
+          password: "daniel",
+          request_token: "edb61a923902c40a960ef44e14eb98230ebb6a46",
+        },
+      };
+
+      axios
+        .request(options)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.error(err));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    handleAuthentication();
+  }, []);
+
   return (
     <>
       <div
