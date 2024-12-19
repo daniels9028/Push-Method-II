@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import bg_login from "../assets/bg_login50.png";
 
 const Login = () => {
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
   return (
     <>
       <div
