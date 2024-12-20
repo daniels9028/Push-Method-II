@@ -40,6 +40,10 @@ const Movies = () => {
     setPage({ ...page, page: page.page + 1 });
   };
 
+  const handleBack = () => {
+    setPage({ ...page, page: page.page - 1 });
+  };
+
   useEffect(() => {
     getAllMovies();
   }, []);
@@ -71,13 +75,18 @@ const Movies = () => {
             ))}
           </div>
           <div className="flex flex-row items-center justify-center gap-6 text-white mt-10">
-            <button className="bg-red-500 py-2 px-6 rounded-full tracking-wide font-semibold hover:bg-red-700 transition-all">
+            <button
+              onClick={handleBack}
+              disabled={page.page === 1}
+              className="bg-red-500 py-2 px-6 rounded-full tracking-wide font-semibold hover:bg-red-700 transition-all disabled:cursor-not-allowed"
+            >
               Back
             </button>
             <p className="text-white font-semibold text-lg">{page.page}</p>
             <button
               onClick={handleNext}
-              className="bg-red-500 py-2 px-6 rounded-full tracking-wide font-semibold hover:bg-red-700 transition-all"
+              disabled={page.page === 249}
+              className="bg-red-500 py-2 px-6 rounded-full tracking-wide font-semibold hover:bg-red-700 transition-all disabled:cursor-not-allowed"
             >
               Next
             </button>
