@@ -2,44 +2,50 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import bg_login from "../assets/bg_login50.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     username: "",
     password: "",
+    request_token: import.meta.env.VITE_REQUEST_KEY,
   });
 
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const handleAuthentication = async () => {
+  const handleLogin = async () => {
     try {
-      const options = {
-        method: "POST",
-        url: "https://api.themoviedb.org/3/authentication/token/validate_with_login",
-        headers: {
-          accept: "application/json",
-          "content-type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-        data: {
-          username: "daniels9028",
-          password: "daniel",
-          request_token: "edb61a923902c40a960ef44e14eb98230ebb6a46",
-        },
-      };
+      setLoading(true);
+      setError("");
+      setSuccess("");
+      const res = await axios.post(
+        "https://api.themoviedb.org/3/authentication/token/validate_with_login",
+        form,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+        }
+      );
 
-      axios
-        .request(options)
-        .then((res) => console.log(res.data))
-        .catch((err) => console.error(err));
+      localStorage.setItem("refresh_token", res.data.request_token);
+      setSuccess("Login was successfully");
+      navigate("/");
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.status_message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  useEffect(() => {
-    handleAuthentication();
-  }, []);
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   return (
     <>
@@ -58,17 +64,31 @@ const Login = () => {
               <p className="text-3xl font-bold tracking-wide text-white">
                 Sign In
               </p>
+              {error && (
+                <p className="text-red-500 mt-4 tracking-wide">{error}</p>
+              )}
+              {success && (
+                <p className="text-green-500 mt-4 tracking-wide">{success}</p>
+              )}
               <input
                 type="text"
                 className="w-full px-4 mt-8 text-white placeholder-gray-400 transition-all border border-gray-700 rounded-lg h-14 bg-gray-900/50 focus:ring-2 focus:border-white focus:ring-white"
                 placeholder="Email atau nomor ponsel"
+                name="username"
+                onChange={handleChange}
               />
               <input
-                type="text"
+                type="password"
                 className="w-full px-4 mt-8 text-white placeholder-gray-400 transition-all border border-gray-700 rounded-lg h-14 bg-gray-900/50 focus:ring-2 focus:border-white focus:ring-white"
                 placeholder="Password"
+                name="password"
+                onChange={handleChange}
               />
-              <button className="w-full py-2 mt-8 text-lg tracking-wide text-white transition-all bg-red-600 rounded-md hover:bg-red-800">
+              <button
+                onClick={handleLogin}
+                disabled={loading}
+                className="w-full py-2 mt-8 text-lg tracking-wide text-white transition-all bg-red-500 rounded-md disabled:bg-red-900"
+              >
                 Sign In
               </button>
               <p className="mt-4 text-center text-gray-700">OR</p>
