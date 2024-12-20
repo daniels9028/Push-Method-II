@@ -60,7 +60,7 @@ const Login = () => {
             className="w-[120px] pt-8 cursor-pointer"
           />
           <div className="grid grid-cols-1 mt-10 place-items-center lg:mt-15">
-            <div className="bg-black lg:w-[40%] w-full overflow-hidden rounded-lg bg-opacity-70 px-14 py-14">
+            <div className="bg-black lg:w-[40%] w-full h-[600px] overflow-hidden rounded-lg bg-opacity-70 lg:px-14 px-7 py-7 lg:py-14">
               <p className="text-3xl font-bold tracking-wide text-white">
                 Sign In
               </p>
