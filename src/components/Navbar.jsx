@@ -3,10 +3,24 @@ import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+
+  const navigate = useNavigate();
+
+  const refresh_token = localStorage.getItem("refresh_token");
+
+  const handleNavbar = () => {
+    if (refresh_token) {
+      localStorage.clear();
+    }
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
+  };
 
   const menuVariants = {
     open: {
@@ -39,11 +53,12 @@ const Navbar = () => {
           <li className="hover:text-red-600 transition-colors">Pricing</li>
           <li className="hover:text-red-600 transition-colors">About</li>
         </ul>
-        <Link to="/login">
-          <button className="bg-red-500 py-2 px-4 rounded-xl text-white hover:text-gray-400 hover:bg-red-600 lg:flex hidden transition-colors">
-            Login
-          </button>
-        </Link>
+        <button
+          className="bg-red-500 py-2 px-4 rounded-xl text-white hover:text-gray-400 hover:bg-red-600 lg:flex hidden transition-colors"
+          onClick={handleNavbar}
+        >
+          {refresh_token ? "Logout" : "Login"}
+        </button>
         <div className="lg:hidden flex cursor-pointer z-50">
           {nav ? (
             <IoClose color="red" size={30} onClick={() => setNav(!nav)} />
