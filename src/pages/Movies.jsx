@@ -11,21 +11,25 @@ const Movies = () => {
       id: 1,
       name: "Now Playing",
       active: true,
+      params: "now_playing",
     },
     {
       id: 2,
       name: "Popular",
       active: false,
+      params: "popular",
     },
     {
       id: 3,
       name: "Upcoming",
       active: false,
+      params: "upcoming",
     },
     {
       id: 4,
       name: "Top Rated",
       active: false,
+      params: "top_rated",
     },
   ]);
 
@@ -33,6 +37,7 @@ const Movies = () => {
     page: 1,
     total_pages: 0,
     total_results: 0,
+    params: "now_playing",
   });
 
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -40,7 +45,7 @@ const Movies = () => {
   const getAllMovies = async () => {
     try {
       const res = await axios.get(
-        `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page.page}`,
+        `https://api.themoviedb.org/3/movie/${page.params}?language=en-US&page=${page.page}`,
         {
           headers: {
             Authorization: `Bearer ${apiKey}`,
@@ -54,6 +59,7 @@ const Movies = () => {
         total_pages: res.data.total_pages,
         total_results: res.data.total_results,
         page: res.data.page,
+        params: params,
       });
     } catch (error) {
       console.log(error);
@@ -68,8 +74,8 @@ const Movies = () => {
     setPage({ ...page, page: page.page - 1 });
   };
 
-  const handleChangeList = (index) => {
-    console.log(index);
+  const handleChangeList = (index, params) => {
+    console.log({ index, params });
 
     let newArray = lists.map((list) => {
       return { ...list, active: false };
@@ -78,15 +84,12 @@ const Movies = () => {
     newArray[index].active = true;
 
     setLists(newArray);
+    setPage({ ...page, params: params });
   };
 
   useEffect(() => {
     getAllMovies();
-  }, []);
-
-  useEffect(() => {
-    getAllMovies();
-  }, [page.page]);
+  }, [page.page, page.params]);
 
   return (
     <>
@@ -95,9 +98,9 @@ const Movies = () => {
         <div className="flex flex-row items-center h-16 gap-6 cursor-pointer">
           {lists.map((list, index) => (
             <h3
-              onClick={() => handleChangeList(index)}
+              onClick={() => handleChangeList(index, list.params)}
               key={list.id}
-              className={`text-lg font-bold tracking-wide text-gray-400 lg:text-2xl text-nowrap ${
+              className={`text-lg font-bold tracking-wide text-gray-400 lg:text-2xl text-nowrap transition-all duration-100 ${
                 list.active ? "underline decoration-solid text-gray-600" : ""
               }`}
             >
