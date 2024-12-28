@@ -87,7 +87,7 @@ const Movies = () => {
     newArray[index].active = true;
 
     setLists(newArray);
-    setPage({ ...page, params: params });
+    setPage({ ...page, params: params, page: 1 });
   };
 
   useEffect(() => {
