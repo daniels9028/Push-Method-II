@@ -6,6 +6,8 @@ import axios from "axios";
 const Movies = () => {
   const [movies, setMovies] = useState([]);
 
+  const [load, setLoad] = useState(false);
+
   const [lists, setLists] = useState([
     {
       id: 1,
@@ -44,6 +46,7 @@ const Movies = () => {
 
   const getAllMovies = async () => {
     try {
+      setLoad(true);
       const res = await axios.get(
         `https://api.themoviedb.org/3/movie/${page.params}?language=en-US&page=${page.page}`,
         {
@@ -59,10 +62,12 @@ const Movies = () => {
         total_pages: res.data.total_pages,
         total_results: res.data.total_results,
         page: res.data.page,
-        params: params,
+        params: page.params,
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoad(false);
     }
   };
 
@@ -75,8 +80,6 @@ const Movies = () => {
   };
 
   const handleChangeList = (index, params) => {
-    console.log({ index, params });
-
     let newArray = lists.map((list) => {
       return { ...list, active: false };
     });
@@ -95,7 +98,7 @@ const Movies = () => {
     <>
       <Navbar />
       <div className="my-32 max-w-[1444px] mx-auto py-4 lg:px-10 px-4">
-        <div className="flex flex-row items-center h-16 gap-6 cursor-pointer">
+        <div className="flex flex-col items-center justify-center gap-6 cursor-pointer lg:flex-row">
           {lists.map((list, index) => (
             <h3
               onClick={() => handleChangeList(index, list.params)}
@@ -126,7 +129,7 @@ const Movies = () => {
           <div className="flex flex-row items-center justify-center gap-6 mt-10 text-white">
             <button
               onClick={handleBack}
-              disabled={page.page === 1}
+              disabled={page.page === 1 || load}
               className="px-6 py-2 font-semibold tracking-wide transition-all bg-red-500 rounded-full hover:bg-red-700 disabled:cursor-not-allowed"
             >
               Back
@@ -134,7 +137,7 @@ const Movies = () => {
             <p className="text-lg font-semibold text-white">{page.page}</p>
             <button
               onClick={handleNext}
-              disabled={page.page === page.total_pages}
+              disabled={page.page === page.total_pages || load}
               className="px-6 py-2 font-semibold tracking-wide transition-all bg-red-500 rounded-full hover:bg-red-700 disabled:cursor-not-allowed"
             >
               Next
