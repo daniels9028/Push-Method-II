@@ -39,27 +39,27 @@ const Navbar = () => {
     },
   };
   return (
-    <div className="w-full fixed left-0 top-0 bg-black bg-opacity-90 backdrop-blur-md z-50 border-b-2 border-gray-800 shadow-md shadow-gray-900">
+    <div className="fixed top-0 left-0 z-50 w-full bg-black border-b-2 border-gray-800 shadow-md bg-opacity-90 backdrop-blur-md shadow-gray-900">
       <nav className="max-w-[1444px] mx-auto h-24 py-4 lg:px-10 px-4 flex justify-between items-center">
-        <img src={logo} alt="logo" className="w-24 bg-contain z-50" />
-        <ul className="lg:flex hidden items-center justify-center gap-8 cursor-pointer text-red-500 font-bold">
-          <Link to="/" className="hover:text-red-600 transition-colors">
+        <img src={logo} alt="logo" className="z-50 w-24 bg-contain" />
+        <ul className="items-center justify-center hidden gap-8 font-bold text-red-500 cursor-pointer lg:flex">
+          <Link to="/" className="transition-colors hover:text-red-600">
             Home
           </Link>
-          <Link to="/movies" className="hover:text-red-600 transition-colors">
+          <Link to="/movies" className="transition-colors hover:text-red-600">
             Movies
           </Link>
-          <li className="hover:text-red-600 transition-colors">Categories</li>
-          <li className="hover:text-red-600 transition-colors">Pricing</li>
-          <li className="hover:text-red-600 transition-colors">About</li>
+          <li className="transition-colors hover:text-red-600">Categories</li>
+          <li className="transition-colors hover:text-red-600">Pricing</li>
+          <li className="transition-colors hover:text-red-600">About</li>
         </ul>
         <button
-          className="bg-red-500 py-2 px-4 rounded-xl text-white hover:text-gray-400 hover:bg-red-600 lg:flex hidden transition-colors"
+          className="hidden px-4 py-2 text-white transition-colors bg-red-500 rounded-xl hover:text-gray-400 hover:bg-red-600 lg:flex"
           onClick={handleNavbar}
         >
           {refresh_token ? "Logout" : "Login"}
         </button>
-        <div className="lg:hidden flex cursor-pointer z-50">
+        <div className="z-50 flex cursor-pointer lg:hidden">
           {nav ? (
             <IoClose color="red" size={30} onClick={() => setNav(!nav)} />
           ) : (
@@ -76,17 +76,21 @@ const Navbar = () => {
         initial={false}
         animate={nav ? "open" : "closed"}
         variants={menuVariants}
-        className="lg:hidden flex flex-col justify-center items-center fixed w-full top-0 right-0 h-screen bg-black z-40 gap-4"
+        className="fixed top-0 right-0 z-40 flex flex-col items-center justify-center w-full h-screen gap-4 bg-black lg:hidden"
       >
-        <ul className="lg:hidden flex flex-col items-center justify-center mt-10 gap-4 cursor-pointer text-red-500 font-bold">
-          <li className="hover:text-red-600 transition-colors">Home</li>
-          <li className="hover:text-red-600 transition-colors">Movies</li>
-          <li className="hover:text-red-600 transition-colors">Categories</li>
-          <li className="hover:text-red-600 transition-colors">Pricing</li>
-          <li className="hover:text-red-600 transition-colors">About</li>
+        <ul className="flex flex-col items-center justify-center gap-4 mt-10 font-bold text-red-500 cursor-pointer lg:hidden">
+          <Link to="/" className="transition-colors hover:text-red-600">
+            Home
+          </Link>
+          <Link to="/movies" className="transition-colors hover:text-red-600">
+            Movies
+          </Link>
+          <li className="transition-colors hover:text-red-600">Categories</li>
+          <li className="transition-colors hover:text-red-600">Pricing</li>
+          <li className="transition-colors hover:text-red-600">About</li>
         </ul>
         <Link to="/login">
-          <button className="bg-red-500 py-2 px-4 rounded-xl text-white hover:text-gray-400 hover:bg-red-600 lg:hidden flex transition-colors">
+          <button className="flex px-4 py-2 text-white transition-colors bg-red-500 rounded-xl hover:text-gray-400 hover:bg-red-600 lg:hidden">
             Login
           </button>
         </Link>
